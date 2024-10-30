@@ -125,13 +125,13 @@ def fetch_doc(results):
     hits = result['hits']
     return [hit['_source'] for hit in hits['hits']]
 
-def hybrid_search2(query, topk=3):
+def hybrid_search(query, topk=3):
     results = [vector_search(query, topk), text_search(query)]
     docs = fetch_doc(results)
     ranked_results = llm_reranker(query, docs)
     return ranked_results
 
 start_time = time.time()
-results = hybrid_search2("Find me a kitchen table")
-print(f"Done in {time.time() - start_time} seconds")
-print(results)
+# results = hybrid_search2("Find me a kitchen table")
+# print(f"Done in {time.time() - start_time} seconds")
+# print(results)
